@@ -25,7 +25,7 @@ void pin_one_cpu(int cpu) {
 void work_thread(int current_thread) {
     pin_one_cpu(current_thread);
     std::mt19937 rng;
-    volatile char *mem = (char *)mmap(NULL, map_size, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
+    volatile char *mem = (char *)mmap(NULL, map_size, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS | MAP_HUGETLB, -1, 0);
     if (mem == MAP_FAILED) {
         printf("map failed!\n");
         exit(1);
